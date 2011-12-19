@@ -23,10 +23,10 @@
 <script src="https://github.com/seanhellwig/jQuery-Facebook-Multi-Photo-Selector/raw/master/build/jquery.facebook.multiphoto.select.min.js"></script>
 <script>
  (function($){
-	FB.init({appId: '202125033143908', cookie: true});
+	FB.init({appId: '202125033143908', cookie: true, oauth: true});
 
 	FB.getLoginStatus(function(response) {
-		if (response.session) {
+		if (response.session.access_token) {
 			init();
 		} else {
 			login();
@@ -35,7 +35,7 @@
 	
 	function login() {
 		FB.login(function(response) {
-			if (response.session) {
+			if (response.authResponse) {
 				init();
 			} else {
 				alert('Login Failed!');
